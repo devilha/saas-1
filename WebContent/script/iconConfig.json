@@ -1,0 +1,87 @@
+[
+	{
+		"class" : "icon-add",
+		"url" : "icons/edit_add.png",
+		"text" : "添加"
+	},
+	{
+		"class" : "icon-edit",
+		"url" : "icons/pencil.png",
+		"text" : "编辑"
+	},
+	{
+		"class" : "icon-remove",
+		"url" : "icons/edit_remove.png",
+		"text" : "删除"
+	},
+	{
+		"class" : "icon-save",
+		"url" : "icons/filesave.png",
+		"text" : "保存"
+	},
+	{
+		"class" : "icon-cut",
+		"url" : "icons/cut.png",
+		"text" : "剪切"
+	},
+	{
+		"class" : "icon-ok",
+		"url" : "icons/ok.png",
+		"text" : "可用"
+	},
+	{
+		"class" : "icon-no",
+		"url" : "icons/no.png",
+		"text" : "禁用"
+	},
+	{
+		"class" : "icon-cancel",
+		"url" : "icons/cancel.png",
+		"text" : "取消"
+	},
+	{
+		"class" : "icon-reload",
+		"url" : "icons/reload.png",
+		"text" : "刷新"
+	},
+	{
+		"class" : "icon-search",
+		"url" : "icons/search.png",
+		"text" : "查找"
+	},
+	{
+		"class" : "icon-print",
+		"url" : "icons/print.png",
+		"text" : "打印"
+	},
+	{
+		"class" : "icon-help",
+		"url" : "icons/help.png",
+		"text" : "帮助"
+	},
+	{
+		"class" : "icon-undo",
+		"url" : "icons/undo.png",
+		"text" : "撤消"
+	},
+	{
+		"class" : "icon-redo",
+		"url" : "icons/redo.png",
+		"text" : "重做"
+	},
+	{
+		"class" : "icon-back",
+		"url" : "icons/back.png",
+		"text" : "返回"
+	},
+	{
+		"class" : "icon-pdf1",
+		"url" : "icons/rb_pdf.gif",
+		"text" : "PDF1"
+	},
+	{
+		"class" : "icon-pdf2",
+		"url" : "icons/soft_pdf.gif",
+		"text" : "PDF2"
+	}
+]

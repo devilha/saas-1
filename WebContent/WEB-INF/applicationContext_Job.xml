@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC
+    "-//SPRING//DTD BEAN//EN"
+    "http://www.springframework.org/dtd/spring-beans.dtd">
+
+<beans>
+	<bean id="jobDetailBean" class="org.springframework.scheduling.quartz.JobDetailBean">
+	    <property name="jobClass" value="com.bfuture.app.job.DBConnJob"/>	    
+	    <property name="applicationContextJobDataKey"> 
+			<value>applicationContext</value> 
+		</property>
+	</bean>
+	
+	<bean id="jobDetailSMS_1" class="org.springframework.scheduling.quartz.JobDetailBean">  <!-- 导入订单和退厂单信息(短信)。-->
+	    <property name="jobClass" value="com.bfuture.app.job.SmsJobOrder"/>	    
+	    <property name="applicationContextJobDataKey"> 
+			<value>applicationContext</value>
+		</property>
+	</bean>
+	
+	<bean id="jobDetailSMS_2" class="org.springframework.scheduling.quartz.JobDetailBean"> <!--发送短信。-->
+	    <property name="jobClass" value="com.bfuture.app.job.SmsJobSend"/>	    
+	    <property name="applicationContextJobDataKey">
+			<value>applicationContext</value> 
+		</property>
+	</bean>
+	
+	<bean id="jobDetailSMS_3" class="org.springframework.scheduling.quartz.JobDetailBean"><!--删除掉3天前的信息。-->
+	    <property name="jobClass" value="com.bfuture.app.job.SmsJobDelOrder"/>	    
+	    <property name="applicationContextJobDataKey"> 
+			<value>applicationContext</value> 
+		</property>
+	</bean>
+	
+	<bean id="jobDetailSMS_4" class="org.springframework.scheduling.quartz.JobDetailBean"><!--删除掉3天前的信息（当短信成功发送和统计完毕后）。-->
+	    <property name="jobClass" value="com.bfuture.app.job.SmsJobDelSmsOrder"/>	    
+	    <property name="applicationContextJobDataKey"> 
+			<value>applicationContext</value> 
+		</property>
+	</bean>
+	
+	<bean id="jobDetailSMS_5" class="org.springframework.scheduling.quartz.JobDetailBean"><!--月初时清空计数器。-->
+	    <property name="jobClass" value="com.bfuture.app.job.SmsJobUpInNum"/>	    
+	    <property name="applicationContextJobDataKey"> 
+			<value>applicationContext</value> 
+		</property>
+	</bean>
+	
+	<bean id="jobDetailSMS_6" class="org.springframework.scheduling.quartz.JobDetailBean"><!--有新的供应商加入时数据的添加。-->
+	    <property name="jobClass" value="com.bfuture.app.job.SmsJobUpInNum"/>	    
+	    <property name="applicationContextJobDataKey"> 
+			<value>applicationContext</value> 
+		</property>
+	</bean>
+	
+	<bean id="cronTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+	    <property name="jobDetail" ref="jobDetailBean"></property>
+	    <property name="cronExpression" value="0/30 * * * * ?"/>
+	</bean>
+	
+	<bean id="smscronTriggerBean_1" class="org.springframework.scheduling.quartz.CronTriggerBean"><!-- 导入订单和退厂单信息(短信)。"0 0/1 * * * ?"-->
+	    <property name="jobDetail" ref="jobDetailSMS_1"></property>
+	    <property name="cronExpression" value="0 0/1 * * * ?"/>
+	</bean>
+	
+	<bean id="smscronTriggerBean_2" class="org.springframework.scheduling.quartz.CronTriggerBean"><!--发送短信。"0 0/1 * * * ?"-->
+	    <property name="jobDetail" ref="jobDetailSMS_2"></property>
+	    <property name="cronExpression" value="0 0/1 * * * ?"/>
+	</bean>
+	
+	<bean id="smscronTriggerBean_3" class="org.springframework.scheduling.quartz.CronTriggerBean"><!--删除掉3天前的信息。"0 0 23 * * ?"-->
+	    <property name="jobDetail" ref="jobDetailSMS_3"></property>
+	    <property name="cronExpression" value="0 0 23 * * ?"/>
+	</bean>
+	
+	<bean id="smscronTriggerBean_4" class="org.springframework.scheduling.quartz.CronTriggerBean"><!--删除掉3天前的信息（当短信成功发送和统计完毕后）。"0 0 23 * * ?"-->
+	    <property name="jobDetail" ref="jobDetailSMS_4"></property>
+	    <property name="cronExpression" value="0 0 23 * * ?"/>
+	</bean>
+	
+	<bean id="smscronTriggerBean_5" class="org.springframework.scheduling.quartz.CronTriggerBean"><!--月初时清空计数器。"0 0 0 1 * ?"-->
+	    <property name="jobDetail" ref="jobDetailSMS_5"></property>
+	    <property name="cronExpression" value="0 0 0 1 * ?"/>
+	</bean>
+	
+	<bean id="smscronTriggerBean_6" class="org.springframework.scheduling.quartz.CronTriggerBean"><!--更新短信接收者信息。"0 0/1 * * * ?"-->
+	    <property name="jobDetail" ref="jobDetailSMS_6"></property>
+	    <property name="cronExpression" value="0 0/1 * * * ?"/>
+	</bean>
+	
+	<bean id="scheduledFactoryBean" class="org.springframework.scheduling.quartz.SchedulerFactoryBean" lazy-init="false">
+	   <property name="triggers">
+	     <list>
+	       <ref bean="cronTriggerBean"/>
+	       <ref bean="smscronTriggerBean_1"/>
+	       <ref bean="smscronTriggerBean_2"/>
+	       <ref bean="smscronTriggerBean_3"/>
+	       <ref bean="smscronTriggerBean_4"/>
+	       <ref bean="smscronTriggerBean_5"/>
+	       <ref bean="smscronTriggerBean_6"/>
+	     </list>
+	   </property>
+	</bean>
+</beans>

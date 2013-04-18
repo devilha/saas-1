@@ -1,0 +1,256 @@
+<web-app version="2.4" xmlns="http://java.sun.com/xml/ns/j2ee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/j2ee http://java.sun.com/xml/ns/j2ee/web-app_2_4.xsd">
+    
+	<display-name>bfuture</display-name>
+	<distributable/>
+	<!-- Context Configuration locations for Spring XML files -->
+	<context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>
+        	/WEB-INF/applicationContext_basic.xml
+        	/WEB-INF/applicationContext_Job.xml
+        	/WEB-INF/applicationContext_saas.xml
+			/WEB-INF/applicationContext_pm.xml			
+		</param-value>
+	</context-param>
+    
+	<context-param>
+		<param-name>log4jConfigLocation</param-name>
+		<param-value>classpath:log4j.properties</param-value>
+	</context-param>
+    
+	<context-param>
+		<param-name>passwordErrorPage</param-name>
+		<param-value>http://60.195.250.172/err_bj.html</param-value>
+	</context-param>
+    
+	<context-param>
+		<param-name>systemErrorPage</param-name>
+		<param-value>http://60.195.250.172/pages/err2.html</param-value>
+	</context-param>
+    
+	<context-param>
+		<param-name>uploadAbsolutePath</param-name>
+		<param-value>/usr/saas/upload</param-value>
+	</context-param>
+    
+	<context-param>
+		<param-name>uploadRelativePath</param-name>
+		<param-value>upload</param-value>
+	</context-param>
+	
+	<context-param>
+        <param-name>uploadPath_window</param-name>
+        <param-value>c:\temp\saas\upload</param-value>
+    </context-param>
+
+	<context-param>
+        <param-name>uploadPath_linux</param-name>
+        <param-value>/usr/saas/upload</param-value>
+    </context-param>
+
+	<filter>
+		<filter-name>encodingFilter</filter-name>
+		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
+		<init-param>
+			<param-name>encoding</param-name>
+			<param-value>UTF-8</param-value>
+		</init-param>
+		<init-param>
+			<param-name>forceEncoding</param-name>
+			<param-value>true</param-value>
+		</init-param>
+	</filter>
+	<filter-mapping>
+		<filter-name>encodingFilter</filter-name>
+		<url-pattern>/*</url-pattern>
+	</filter-mapping>
+    
+	<listener>
+		<listener-class>com.bfuture.app.basic.clientapp.controller.StartupListener</listener-class>
+	</listener>
+	<listener>
+		<listener-class>com.bfuture.app.saas.clientapp.controller.UserCounterListener</listener-class>
+	</listener>  
+
+	<servlet>
+		<description>
+		</description>
+		<display-name>JsonServlet</display-name>
+		<servlet-name>JsonServlet</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.GenericServlet</servlet-class>
+	</servlet>
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>Login</display-name>
+		<servlet-name>Login</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.LoginServlet</servlet-class>
+	</servlet>
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>Logout</display-name>
+		<servlet-name>Logout</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.LogoutServlet</servlet-class>
+	</servlet>
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>GetCurrentUser</display-name>
+		<servlet-name>GetCurrentUser</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.GetCurrentUserServlet</servlet-class>
+	</servlet>
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>OnlineUsers</display-name>
+		<servlet-name>OnlineUsers</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.ListOnlineUserServlet</servlet-class>
+	</servlet> 
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>Upload</display-name>
+		<servlet-name>Upload</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.UploadServlet</servlet-class>
+	</servlet>
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>EditorUpload</display-name>
+		<servlet-name>EditorUpload</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.EditorUploadServlet</servlet-class>
+	</servlet>
+    
+	<servlet>
+		<description>
+		</description>
+		<display-name>UploadStatus</display-name>
+		<servlet-name>UploadStatus</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.UploadStatusServlet</servlet-class>
+	</servlet>
+
+	<servlet>
+		<description>
+		</description>
+		<display-name>
+    	DataUpExcelServlet</display-name>
+		<servlet-name>DataUpExcelServlet</servlet-name>
+		<servlet-class>
+    	com.bfuture.app.saas.clientapp.servlet.DataUpExcelServlet</servlet-class>
+	</servlet>
+	
+	<servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>DownServlet</servlet-name>
+    <servlet-class>com.bfuture.app.saas.clientapp.servlet.DownServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DownServlet</servlet-name>
+    <url-pattern>/DownServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+	<servlet-name>DownloadFile</servlet-name>
+	<servlet-class>com.bfuture.app.saas.clientapp.servlet.DownloadFile</servlet-class>
+  </servlet>
+	
+  <servlet-mapping>
+	<servlet-name>DownloadFile</servlet-name>
+	<url-pattern>/downloadfile</url-pattern>
+  </servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>JsonServlet</servlet-name>
+		<url-pattern>/JsonServlet</url-pattern>
+	</servlet-mapping>
+        
+	<servlet-mapping>
+		<servlet-name>Login</servlet-name>
+		<url-pattern>/Login</url-pattern>
+	</servlet-mapping>  
+        
+	<servlet-mapping>
+		<servlet-name>Logout</servlet-name>
+		<url-pattern>/Logout</url-pattern>
+	</servlet-mapping>    
+    
+	<servlet-mapping>
+		<servlet-name>GetCurrentUser</servlet-name>
+		<url-pattern>/GetCurrentUser</url-pattern>
+	</servlet-mapping>    
+    
+	<servlet-mapping>
+		<servlet-name>OnlineUsers</servlet-name>
+		<url-pattern>/OnlineUsers</url-pattern>
+	</servlet-mapping>
+    
+	<servlet-mapping>
+		<servlet-name>Upload</servlet-name>
+		<url-pattern>/Upload</url-pattern>
+	</servlet-mapping>
+    
+	<servlet-mapping>
+		<servlet-name>EditorUpload</servlet-name>
+		<url-pattern>/EditorUpload</url-pattern>
+	</servlet-mapping>
+    
+	<servlet-mapping>
+		<servlet-name>UploadStatus</servlet-name>
+		<url-pattern>/UploadStatus</url-pattern>
+	</servlet-mapping>
+
+	<servlet-mapping>
+		<servlet-name>DataUpExcelServlet</servlet-name>
+		<url-pattern>/DataUpExcelServlet</url-pattern>
+	</servlet-mapping>
+    
+	<servlet>
+		<display-name>CertDownServlet</display-name>
+		<servlet-name>CertDownServlet</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.CertDownServlet</servlet-class>
+	</servlet>    
+	<servlet-mapping>
+		<servlet-name>CertDownServlet</servlet-name>
+		<url-pattern>/CertDownServlet</url-pattern>
+	</servlet-mapping> 
+	<servlet>
+		<display-name>CenterDownServlet</display-name>
+		<servlet-name>CenterDownServlet</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.CenterDownServlet</servlet-class>
+	</servlet>
+	<servlet>
+		<description>
+		</description>
+		<display-name>DownLoadFile</display-name>
+		<servlet-name>DownLoadFile</servlet-name>
+		<servlet-class>com.bfuture.app.saas.clientapp.servlet.DownLoadFile</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>CenterDownServlet</servlet-name>
+		<url-pattern>/CenterDownServlet</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>DownLoadFile</servlet-name>
+		<url-pattern>/DownLoadFile</url-pattern>
+	</servlet-mapping>
+	
+	<session-config>  
+		<session-timeout>30</session-timeout>  
+	</session-config>
+	
+	<welcome-file-list>
+		<welcome-file>index.jsp</welcome-file>
+	</welcome-file-list>
+	
+</web-app>

@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
+            http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-2.0.xsd
+            http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-2.0.xsd"
+       default-lazy-init="true">
+	
+	<bean id="passwordEncoder" class="org.springframework.security.providers.encoding.Md5PasswordEncoder"/>
+	
+	<!--系统相关(角色、用户、菜单)-->    
+    <bean id="sysRoleManager" class="com.bfuture.app.saas.service.impl.SysRoleManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <bean id="userManager" class="com.bfuture.app.saas.service.impl.SysScmuserManagerImpl">
+    		<property name="dao" ref="universalAppDao"/> 
+    		<property name="passwordEncoder" ref="passwordEncoder"/>   		  		
+    </bean>
+    
+    <bean id="sysLogManager" class="com.bfuture.app.saas.service.impl.SysLogManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <bean id="sysMenuManager" class="com.bfuture.app.saas.service.impl.SysMenuManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <bean id="infSupinfoManager" class="com.bfuture.app.saas.service.impl.InfSupinfoManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <!--批量开户 -->
+    <bean id="plkhManagerImpl" class="com.bfuture.app.saas.service.impl.PlkhManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    		<property name="passwordEncoder" ref="passwordEncoder"/>  
+    </bean> 
+    
+    <!-- 公告及消息 -->
+    <bean id="msgManager" class="com.bfuture.app.saas.service.impl.MsgMessageManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <!-- 消息 -->
+    <bean id="msgMessageManager" class="com.bfuture.app.saas.service.impl.MyMsgMessageManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+
+	<bean id="noticeManager" class="com.bfuture.app.saas.service.impl.MsgNoticeManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <!--销售汇总-->
+    <bean id="saleSummary" class="com.bfuture.app.saas.service.impl.SaleSummaryImpl" > 
+    	<property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+    
+    <!--销售趋势-->
+    <bean id="saleTrendReport" class="com.bfuture.app.saas.service.impl.SaleTrendReportImpl">
+    	<property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+    <!-- 销售ABC -->
+    <bean id="saleABCReport" class="com.bfuture.app.saas.service.impl.SaleABCReportImpl">
+    	<property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+    <!--门店信息-->
+    <bean id="shopManager" class="com.bfuture.app.saas.service.impl.ShopManagerImpl">
+    	<property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+    <!-- 订单头 -->
+    <bean id="ywBorderhead" class="com.bfuture.app.saas.service.impl.YwBorderheadManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <!-- 订单明细 -->
+    <bean id="ywBorderdet" class="com.bfuture.app.saas.service.impl.YwBorderdetManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <!-- 订单状态 -->
+    <bean id="ywBorderstatus" class="com.bfuture.app.saas.service.impl.YwBorderstatusManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+     <!-- 入库单查询 -->
+    <bean id="rkdocQueryManager" class="com.bfuture.app.saas.service.impl.RKDocQueryManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    <!-- 退厂单查询 -->
+    <bean id="tcdocQueryManager" class="com.bfuture.app.saas.service.impl.TCDocQueryManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    <!-- 商品优惠单查询 -->
+    <bean id="popQueryManager" class="com.bfuture.app.saas.service.impl.POPQueryManagerImpl">
+    		<property name="dao" ref="universalAppDao"/>    		  		
+    </bean>
+    
+    <!-- 促销信息管理 -->
+    <bean id="ywPopInfoManager" class="com.bfuture.app.saas.service.impl.YwPopInfoManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+    
+     <!-- 商品库存明细查询 -->
+    <bean id="ywZrstockDetails" class="com.bfuture.app.saas.service.impl.YwZrstockDetailsManagerImpl">
+    	    <property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+     <!-- 商品库存类别明细查询 -->
+    <bean id="ywZrstockCategory" class="com.bfuture.app.saas.service.impl.YwZrstockCategoryManagerImpl">
+    	    <property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+    <!-- 商品信息 -->
+    <bean id="goods" class="com.bfuture.app.saas.service.impl.GoodsManagerImpl">
+    	    <property name="dao" ref="universalAppDao"/>
+    </bean>
+    
+    <!-- 门店分布管理 -->
+    <bean id="ShopInfoManager" class="com.bfuture.app.saas.service.impl.ShopInfoManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+    
+    <!-- 预警提醒 -->
+    <bean id="warn" class="com.bfuture.app.saas.service.impl.WarningRemindManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean> 
+
+    <bean id="dataUpExcelManagerImpl" class="com.bfuture.app.saas.service.impl.DataUpExcelManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+    
+    <bean id="InfLicenceManager" class="com.bfuture.app.saas.service.impl.InfLicenceManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+    
+    <bean id="SmsJobManager" class="com.bfuture.app.job.service.impl.SmsJobManagerImpl">
+    		<property name="smsJobDao" ref="smsJobDao"/>
+    </bean>
+    <bean id="smsJobDao" class="com.bfuture.app.job.dao.hibernate.SmsJobDaoHibernate">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
+
+    <bean id="downlodeCenter" class="com.bfuture.app.saas.service.impl.DownlodeCenterManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+    
+	<bean id="InvoiceDZDXFXManager" class="com.bfuture.app.saas.service.impl.InvoiceDZDXFXManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+    
+    <!--首页管理-->
+    <bean id="homeManager" class="com.bfuture.app.saas.service.impl.HomeManagerImpl">
+    		<property name="dao" ref="universalAppDao" />
+    </bean>
+</beans>

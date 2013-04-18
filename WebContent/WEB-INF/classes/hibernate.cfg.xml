@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC "-//Hibernate/Hibernate Configuration DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	<session-factory>
+		<property name="jdbc.fetch_size">50</property>
+		<property name="jdbc.batch_size">30</property>
+		<property name="hibernate.show_sql">true</property>
+		<property name="hibernate.connection.driver_class">oracle.jdbc.driver.OracleDriver</property>
+		<!-- 
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.198:1521:orcl</property>
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@123.122.90.106:1521:orcl</property>
+		 -->
+		<property name="hibernate.connection.url">jdbc:oracle:thin:@192.168.0.198:1521:orcl</property>
+		<property name="hibernate.connection.username">scmuser</property>
+		<property name="hibernate.connection.password">scmusering</property>
+		<property name="hibernate.default_schema">SCMUSER</property>
+		<property name="dialect">org.hibernate.dialect.OracleDialect</property>
+		<mapping class="com.bfuture.app.saas.model.SysSurl"/>			
+		<mapping class="com.bfuture.app.saas.model.SysRole"/>		
+		<mapping class="com.bfuture.app.saas.model.SysScmuser"/>				
+		<mapping class="com.bfuture.app.saas.model.SysLogevent"/>
+		<mapping class="com.bfuture.app.saas.model.SysMenu"/>			
+		<mapping class="com.bfuture.app.saas.model.SysRlmeu"/>
+		<mapping class="com.bfuture.app.saas.model.SysCodeseq"/>
+		<mapping class="com.bfuture.app.saas.model.InfGoods"/>
+		<mapping class="com.bfuture.app.saas.model.InfGoodsId"/>
+		<mapping class="com.bfuture.app.saas.model.InfShop"/>
+		<mapping class="com.bfuture.app.saas.model.YwZrstockId"/>
+		
+		<mapping class="com.bfuture.app.pm.model.PmActIns"/>
+		<mapping class="com.bfuture.app.pm.model.PmActInsHis"/>
+		<mapping class="com.bfuture.app.pm.model.PmActive"/>		
+		<mapping class="com.bfuture.app.pm.model.PmRule"/>
+		<mapping class="com.bfuture.app.pm.model.PmProIns"/>
+		<mapping class="com.bfuture.app.pm.model.PmProInsHis"/>
+		<mapping class="com.bfuture.app.pm.model.PmTemplate"/>
+		<mapping class="com.bfuture.app.pm.model.PmLog"/>
+		
+		<mapping class="com.bfuture.app.saas.model.MsgMessage"/>
+		<mapping class="com.bfuture.app.saas.model.MsgNotice"/>
+		
+		<mapping class="com.bfuture.app.saas.model.YwBorderhead"/>
+		<mapping class="com.bfuture.app.saas.model.YwBorderdet"/>
+		<mapping class="com.bfuture.app.saas.model.YwBorderstatus"/>
+		<mapping class="com.bfuture.app.saas.model.ShopInfo"/>
+		<mapping class="com.bfuture.app.saas.model.InfLicence"/>
+		<mapping class="com.bfuture.app.saas.model.MsgChat"/>
+		<mapping class="com.bfuture.app.saas.model.SmsCustom"/>
+		<mapping class="com.bfuture.app.saas.model.SmsSend"/>
+		
+		<mapping class="com.bfuture.app.saas.model.InvoiceDZDXFX"/>
+		<!-- 文档中心 -->
+		<mapping class="com.bfuture.app.saas.model.DownlodeCenter"/>
+		<!-- 
+		<mapping class="com.bfuture.app.saas.model.YwPopinfo"/>
+		 -->
+		<mapping class="com.bfuture.app.saas.model.YwPopinfoNew"/>
+		
+		
+	</session-factory>
+</hibernate-configuration>
